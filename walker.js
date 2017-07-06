@@ -6,11 +6,13 @@ let helper = require('./helper.js')
 
 const walker = {
 	walk(map, pathsArray, start, end) {
+		const picture = [];
 		let walking = true;
 		let positions = [[start.x,start.y]]
 		
 		while (walking) {
 			console.log(helper.arrayToStr(map) + '\n');
+			picture.push(helper.arrayToStr(map) + '\n');
 			positions.map((position, i, positions) => {
 				let x = position.slice(0)[0];
 				let y = position.slice(1)[0];
@@ -46,7 +48,9 @@ const walker = {
 				}
 			})
 		}
+		return picture.join('\n')
 	},
+	
 	canWalk(map, x, y) {
 		let count = 0;
 		let compass = []

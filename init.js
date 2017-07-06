@@ -77,7 +77,7 @@ let testMaze = ``;
 		let maze = this.strToArray(str);
 		maze = this.addWalls(maze);
 		maze = this.findStart(maze);
-		maze = this.fillDead(maze);
+//		maze = this.fillDead(maze);
 		
 		maze.possiblePaths = [[]];
 		return maze
