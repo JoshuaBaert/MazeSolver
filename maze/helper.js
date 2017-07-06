@@ -18,7 +18,7 @@ module.exports = {
 		}
 	},
 	
-	consoleDisplay(map,path) {
+	displayShortest(map,path) {
 		path.map(cords=>map[cords[0]][cords[1]] = '!')
 	}
 	

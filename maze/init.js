@@ -76,15 +76,15 @@ let testMaze = ``;
 		return maze
 	},
 	
-	start(str) {
+	start(mazeStr, snapShots) {
 		let snapShots = []
-		let maze = this.strToArray(str);
+		let maze = this.strToArray(mazeStr);
 		maze = this.addWalls(maze);
 		maze = this.findStart(maze);
-//		maze = this.fillDead(maze, snapShots);
+		maze = this.fillDead(maze, snapShots);
 		
 		maze.possiblePaths = [[]];
-		return [maze, snapShots]
+		return maze
 	}
 	
 };
