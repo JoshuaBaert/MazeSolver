@@ -18,8 +18,26 @@ console.log(typeof hurry)
 */
 
 
-let paths = [[],[]]
+let compass = [3]
+let x =2
+let y =2
 
-function push(array) {
-	array.push('what')
+switch (compass[0]) {
+	case 0 :
+		y+=1;
+		break;
+	case 1 :
+		x+=1;
+		break;
+	case 2 :
+		y-=1;
+		break;
+	case 3 :
+		x-=1;
+		break;
+	default :
+		console.log("didn't do anything")
 }
+
+
+console.log('x:'+x+' y;'+y);

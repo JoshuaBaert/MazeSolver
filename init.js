@@ -12,12 +12,8 @@ let testMaze = ``;
 		return str.trim().split('\n').map(line => line.split(''))
 	},
 	
-	arrayToStr(array) {
-		return array.map(line => line.join('')).join('\n')
-	},
-	
 	findStart(array) {
-		let results = {}
+		let results = {};
 		for (let x = array.length - 1; x >= 0; x--) {
 			for (let y = array[x].length - 1; y >= 0; y--) {
 				if (array[x][y] === 'A') {
@@ -36,16 +32,16 @@ let testMaze = ``;
 	
 	addWalls(map){
 		map.map(line => {
-			line.unshift('#')
+			line.unshift('#');
 			return line.push('#')
-		})
+		});
 		map.unshift(topBottomWalls(map));
 		map.push(topBottomWalls(map));
 		function topBottomWalls(map) {
-			let rtn = []
+			let rtn = [];
 			map.map((line, index)=>{
 				if(index === 0) line.map(xy =>rtn.push('#'))
-			})
+			});
 			return rtn
 		}
 		return map
@@ -56,11 +52,11 @@ let testMaze = ``;
 		let map = maze.map.slice();
 		while (change) {
 			change = false;
-			for (var x = 1; x < map.length - 1; x++) {
-				for (var y = 1; y < map[x].length - 1; y++) {
-					let count = 0
-					let isStart = (x === maze.start.x && y === maze.start.y)
-					let isEnd = (x === maze.end.x && y === maze.end.y)
+			for (let x = 1; x < map.length - 1; x++) {
+				for (let y = 1; y < map[x].length - 1; y++) {
+					let count = 0;
+					let isStart = (x === maze.start.x && y === maze.start.y);
+					let isEnd = (x === maze.end.x && y === maze.end.y);
 					if (map[x + 1][y] === "#") count++;
 					if (map[x - 1][y] === "#") count++;
 					if (map[x][y + 1] === "#") count++;
@@ -78,8 +74,13 @@ let testMaze = ``;
 	},
 	
 	start(str) {
-		let maze = this.findStart(this.addWalls(this.strToArray(str)))
-		return this.fillDead(maze)
+		let maze = this.strToArray(str);
+		maze = this.addWalls(maze);
+		maze = this.findStart(maze);
+		maze = this.fillDead(maze);
+		
+		maze.possiblePaths = [[]];
+		return maze
 	}
 	
 };
