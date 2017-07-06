@@ -4,6 +4,8 @@
 
 "use strict";
 
+const helper = require('./helper.js')
+
 let testMaze = ``;
 
  const init = {
@@ -47,11 +49,12 @@ let testMaze = ``;
 		return map
 	},
 	
-	fillDead(maze) {
+	fillDead(maze, snapShots) {
 		let change = true;
 		let map = maze.map.slice();
 		while (change) {
 			change = false;
+			snapShots.push(helper.arrayToStr(map));
 			for (let x = 1; x < map.length - 1; x++) {
 				for (let y = 1; y < map[x].length - 1; y++) {
 					let count = 0;
@@ -74,13 +77,14 @@ let testMaze = ``;
 	},
 	
 	start(str) {
+		let snapShots = []
 		let maze = this.strToArray(str);
 		maze = this.addWalls(maze);
 		maze = this.findStart(maze);
-//		maze = this.fillDead(maze);
+//		maze = this.fillDead(maze, snapShots);
 		
 		maze.possiblePaths = [[]];
-		return maze
+		return [maze, snapShots]
 	}
 	
 };
