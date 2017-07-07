@@ -35,15 +35,13 @@ let testMaze = ``;
 	addWalls(map){
 		map.map(line => {
 			line.unshift('#');
-			return line.push('#')
+			line.push('#');
 		});
 		map.unshift(topBottomWalls(map));
 		map.push(topBottomWalls(map));
 		function topBottomWalls(map) {
 			let rtn = [];
-			map.map((line, index)=>{
-				if(index === 0) line.map(xy =>rtn.push('#'))
-			});
+			map[0].map(point=> rtn.push('#'));
 			return rtn
 		}
 		return map

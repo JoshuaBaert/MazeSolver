@@ -23,5 +23,5 @@ module.exports={
 		snapShots.push(helper.arrayToStr(maze.map));
 		return maze
 	}
-}
+};
 
