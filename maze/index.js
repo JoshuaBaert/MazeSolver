@@ -2,6 +2,7 @@
  * Created by Joshua Baert on 7/6/2017.
  */
 
+const finish = require('./finish.js');
 const fs = require('fs');
 const helper = require('./helper.js');
 const init = require('./init.js');
@@ -11,21 +12,16 @@ const mazeStr = ``;
 
 module.exports={
 	solve(str) {
-		let snapShots = []
-		var start = new Date();
-		let maze = init.start(str,snapShots);
+		let start = new Date();
+		let maze = init.start(str);
 		
-		snapShots.concat(walker.walk(maze.map, maze.possiblePaths, maze.start, maze.end));
-		var time = new Date() - start;
+		let snapShots = walker.walk(maze.map, maze.possiblePaths, maze.start, maze.end);
+		let time = new Date() - start;
 		
-		maze.winner = helper.findWinner(maze.possiblePaths, maze.end);
-		helper.displayShortest(maze.map, maze.winner);
-		snapShots.push(helper.arrayToStr(maze.map))
+		maze = finish.cleanMaze(maze);
+//		console.log(snapShots);
+		snapShots.push(helper.arrayToStr(maze.map));
 		
-		/*fs.writeFile('../picture.txt', snapShots.join('\n\n'), err => {
-			if (err) console.log(err)
-			else console.log('file was saved')
-		})*/
 	}
 }
 

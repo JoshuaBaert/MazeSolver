@@ -1,3 +1,5 @@
 .idea
 test.js
 picture.txt
+node_modules
+config.js

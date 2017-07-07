@@ -5,6 +5,7 @@
 let helper = require('./helper.js')
 
 const walker = {
+	
 	walk(map, pathsArray, start, end) {
 		const snapShots = [];
 		let walking = true;
