@@ -27,15 +27,5 @@ export class InputComponent implements OnInit, AfterViewInit {
     console.log(this.code)
   }
   ngOnInit() {
-    this.code = `
-##########
-#A...#...#
-#.#.##.#.#
-#.#.##.#.#
-#.#....#B#
-#.#.##.#.#
-#....#...#
-##########
-`.trim();
   }
 }
