@@ -16,12 +16,12 @@ module.exports={
 		let maze = init.start(str);
 		
 		let snapShots = walker.walk(maze.map, maze.possiblePaths, maze.start, maze.end);
-		let time = new Date() - start;
+		maze.time = new Date() - start +'ms';
 		
 		maze = finish.cleanMaze(maze);
 //		console.log(snapShots);
 		snapShots.push(helper.arrayToStr(maze.map));
-		
+		return maze
 	}
 }
 

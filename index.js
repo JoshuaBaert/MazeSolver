@@ -11,7 +11,7 @@ const maze = require('./maze/index');
 const config = require('./config');
 
 
-maze.solve(`
+console.log(maze.solve(`
 ##########
 #A...#...#
 #.#.##.#.#
@@ -20,7 +20,7 @@ maze.solve(`
 #.#.##.#.#
 #....#...#
 ##########
-`);
+`));
 
 
 const app = express();
