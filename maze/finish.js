@@ -7,6 +7,7 @@ module.exports = {
 		maze.winner = this.findWinner(maze.possiblePaths, maze.end);
 		delete maze.possiblePaths;
 		this.displayShortest(maze.map, maze.winner);
+		this.removeWalls(maze.map);
 		
 		return maze
 	},
@@ -23,5 +24,15 @@ module.exports = {
 	
 	displayShortest(map,path) {
 		path.map(cords=>map[cords[0]][cords[1]] = '!')
+	},
+	
+	removeWalls(map) {
+		map.map(line=>{
+			line.pop();
+			line.shift();
+		})
+		map.pop();
+		map.shift();
+		return map
 	}
 }

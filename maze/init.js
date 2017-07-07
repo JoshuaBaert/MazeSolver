@@ -11,7 +11,7 @@ let testMaze = ``;
  const init = {
 	
 	strToArray(str) {
-		return str.trim().split('\n').map(line => line.split(''))
+		return str.trim().split('\n').map(line => line.trim().split(''))
 	},
 	
 	findStart(array) {

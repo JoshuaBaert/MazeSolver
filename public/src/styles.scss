@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+.CodeMirror {
+  border: 1px solid #808080;
+  height: auto;
+  font-size: 18px;
+  
+  .CodeMirror-lines{
+    min-height: 300px;
+  }
+}
+

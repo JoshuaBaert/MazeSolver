@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CodemirrorModule } from 'ng2-codemirror-typescript';
+import { CodemirrorComponent } from 'ng2-codemirror-typescript';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
@@ -10,13 +10,13 @@ import { InputComponent } from './input/input.component'
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent
+    InputComponent,
+    CodemirrorComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    CodemirrorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
