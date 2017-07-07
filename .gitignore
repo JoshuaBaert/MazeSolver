@@ -4,3 +4,11 @@ picture.txt
 node_modules
 config.js
 test.html
+
+# Ignore CodeMirror
+/public/src/assets/codemirror/*
+
+# Except the needed files
+!/public/src/assets/codemirror/lib
+!/public/src/assets/codemirror/mode
+!/public/src/assets/codemirror/theme

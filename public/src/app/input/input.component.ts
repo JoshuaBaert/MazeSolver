@@ -1,7 +1,4 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-declare var jquery:any;
-declare var $ :any;
-declare var CodeMirror: any;
 
 @Component({
   selector: 'app-input',
@@ -22,6 +19,14 @@ export class InputComponent implements OnInit, AfterViewInit {
   code;
 
   constructor() {
+  }
+
+  ngAfterViewInit(){
+  }
+  onClick() {
+    console.log(this.code)
+  }
+  ngOnInit() {
     this.code = `
 ##########
 #A...#...#
@@ -32,14 +37,5 @@ export class InputComponent implements OnInit, AfterViewInit {
 #....#...#
 ##########
 `.trim();
-  }
-
-  ngAfterViewInit(){
-  }
-  onClick() {
-    console.log(this.code)
-  }
-  ngOnInit() {
-
   }
 }
