@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import 'codemirror';
+import {CodemirrorModule} from 'ng2-codemirror-typescript';
+
 import { AppComponent } from './app.component';
 import { InputComponent } from './input/input.component'
 
@@ -15,6 +18,7 @@ import { InputComponent } from './input/input.component'
     BrowserModule,
     FormsModule,
     HttpModule,
+    CodemirrorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
