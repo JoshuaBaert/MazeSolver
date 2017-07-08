@@ -88,13 +88,13 @@
 .button-container {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   
   padding: 2px;
   
   .run-button {
     font-size: 20px;
-    width: 100px;
+    min-width: 100px;
   }
 }
 

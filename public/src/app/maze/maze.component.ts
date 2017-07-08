@@ -5,41 +5,7 @@ declare var $ :any;
 @Component({
   selector: 'app-maze',
   styleUrls: ['./maze.component.scss'],
-  template: `
-
-    <ul class="tabs" >
-      
-      <li [class]="tabs.editor ? 'selected' : ''"
-        (click)="switchTabs('editor')"
-      >Editor</li>
-      
-      <li [class]="tabs.map ? 'selected' : ''"
-        (click)="switchTabs('map')"
-      >Map</li>
-      
-    </ul>
-
-    <div class="map-display" [class]="!tabs.map ? 'hidden': ''">
-
-    </div>
-    
-    <div [class]="text-editor" [class]="!tabs.editor ? 'hidden': ''">
-      <codemirror [(ngModel)]="map"
-        [config]="{
-    	lineNumbers: true,
-    	theme: 'seti',
-    	value: 'test of value',
-    	lineSeparator: '\n'
-    	}">
-      </codemirror>
-      <div class="button-container">
-        <button 
-          (click)="onRun()"
-          class="run-button btn btn-primary"
-        >Run</button>
-      </div>
-    </div>
-  `
+  templateUrl: './maze.component.html'
 })
 export class MazeComponent implements OnInit {
   tabs = {
@@ -48,12 +14,15 @@ export class MazeComponent implements OnInit {
   }
   map;
 
-  strToArray(str) {
-
+  mapToDisplay(str) {
+    let map = str.split('\n').map(line => line.split(''));
+    console.log(map)
+    return map
   }
 
   onRun(){
-
+    console.log(this.map);
+    this.mapToDisplay(this.map)
   }
 
   switchTabs(tab) {
