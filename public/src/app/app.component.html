@@ -16,15 +16,6 @@
   </ul>
   
   
-  <app-maze
-    [run]="runMaze"
-    [class]="!tabs.map ? 'hidden': ''"
-    [snapShots]="snapShots"
-    [map]="map">
-  
-  </app-maze>
-  
-  
   <div [class]="text-editor" [class]="!tabs.editor ? 'hidden': ''">
     <codemirror [(ngModel)]="map"
       [config]="{
@@ -47,6 +38,15 @@
       </button>
     </div>
   </div>
+  
+  
+  <app-maze
+    [run]="runMaze"
+    [class]="!tabs.map ? 'hidden': ''"
+    [maze]="maze"
+    [map]="map">
+  
+  </app-maze>
 
 
 </div>

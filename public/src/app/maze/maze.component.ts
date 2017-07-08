@@ -6,28 +6,36 @@ import {Component, OnInit, Input} from '@angular/core';
   templateUrl: './maze.component.html'
 })
 export class MazeComponent implements OnInit {
-  _snapShots;
+  _maze;
   _map;
 
-  speed = 75;
+  instructions
+  speed = 100;
   i = 0;
   displayMap;
+  finalMap;
 
 
-  @Input() set snapShots(array){
-    this._snapShots = array.map(map=>this.mapToDisplay(map))
+  @Input() set maze(maze) {
+    if(maze.map){
+      this._maze = maze
+      this.displayMap = this.mapToDisplay(maze.initMap);
+      this.finalMap = maze.map;
+      this.instructions = maze.instructions;
+      console.log(this.instructions)
+    }
   };
 
-  @Input() set map (str) {
+  @Input() set map(str) {
     console.log(str);
     this._map = str;
   };
 
-  @Input() set run (boo) {
+  @Input() set run(boo) {
     this.displayMap = this.mapToDisplay(this._map);
-    setTimeout(()=>{
+    setTimeout(() => {
       this.reRun()
-    },1000)
+    }, 1000)
   }
 
 
@@ -35,7 +43,8 @@ export class MazeComponent implements OnInit {
   }
 
   reRun() {
-    this.i=0;
+    this.displayMap = this.mapToDisplay(this._map);
+    this.i = 0;
     this.animate()
   }
 
@@ -46,14 +55,19 @@ export class MazeComponent implements OnInit {
 
 
   animate() {
-    (() => {
-      setTimeout(() => {
-        if (this.i < this._snapShots.length) {
-          this.displayMap= this._snapShots[this.i];
-          this.i++;
-          this.animate();
-        }
-      }, this.speed);
-    })()
+    setTimeout(() => {
+      if (this.i < this.instructions.length) {
+        this.instructions[this.i].map(point=>{
+          console.log(point);
+          console.log(this.displayMap[point.x][point.y]);
+          this.displayMap[point.x][point.y] = point.update
+        });
+        this.i++;
+        this.animate();
+      } else {
+        this.displayMap = this.finalMap;
+        this.i = 0
+      }
+    }, this.speed);
   }
 }

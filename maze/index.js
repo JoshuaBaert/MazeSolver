@@ -18,8 +18,8 @@ module.exports={
 		maze.time = new Date() - start +'ms';
 		
 		maze = output.cleanMaze(maze);
-		instructions.push(output.simpleToStr(maze.map));
 		maze.instructions = instructions;
+//		console.log(maze);
 		return maze
 	}
 };

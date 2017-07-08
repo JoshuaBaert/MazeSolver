@@ -7,18 +7,18 @@ import {SolveService} from './solve.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  tabs = {map: false, editor: true};
+  tabs = {map: true, editor: true};
   width;
-  map;
-  snapShots = [];
+  map = {};
+  maze = {};
   runMaze = false;
 
   onRun() {
     console.log(this.map);
     this.solveService.postMaze(this.map)
       .subscribe(data=> {
-        this.snapShots = data.snapShots;
-        console.log(this.snapShots);
+        this.maze = data;
+        console.log(data);
         this.switchTabs('');
         this.runMaze = !this.runMaze;
       });
