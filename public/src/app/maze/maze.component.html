@@ -11,9 +11,32 @@
 
 </ul>
 
-<div class="map-display" [class]="!tabs.map ? 'hidden': ''">
+
+
+
+<div id="maze" class="map-display" [class]="!tabs.map ? 'hidden map-display': ' map-display'">
+  
+  <div class="line"
+    *ngFor="let line of displayMap">
+    
+    <div style="height: 100%; width: 100%"
+      *ngFor="let plot of line">
+      <div [ngSwitch]="plot">
+        <div *ngSwitchCase="'#'" class="cell wall" [style.width]="width"></div>
+        <div *ngSwitchCase="'.'" class="cell road"></div>
+        <div *ngSwitchCase="'A'" class="cell start"></div>
+        <div *ngSwitchCase="'B'" class="cell end"></div>
+        <div *ngSwitchCase="'!'" class="cell path"></div>
+        <div *ngSwitchCase="'*'" class="cell test"></div>
+      </div>
+    </div>
+    
+  </div>
 
 </div>
+
+
+
 
 <div [class]="text-editor" [class]="!tabs.editor ? 'hidden': ''">
   <codemirror [(ngModel)]="map"

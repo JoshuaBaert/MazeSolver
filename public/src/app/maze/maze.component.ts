@@ -9,20 +9,23 @@ declare var $ :any;
 })
 export class MazeComponent implements OnInit {
   tabs = {
-    map: false,
+    map: true,
     editor: true
-  }
+  };
+  width;
   map;
+  displayMap
 
   mapToDisplay(str) {
     let map = str.split('\n').map(line => line.split(''));
-    console.log(map)
-    return map
+    console.log(map);
+    this.displayMap = map
   }
 
   onRun(){
     console.log(this.map);
     this.mapToDisplay(this.map)
+    this.switchTabs('')
   }
 
   switchTabs(tab) {
@@ -43,6 +46,8 @@ export class MazeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(document.getElementById('maze').offsetWidth);
+
     this.map = `
 ##########
 #A...#...#
@@ -53,6 +58,12 @@ export class MazeComponent implements OnInit {
 #....#...#
 ##########
 `.trim();
+    this.mapToDisplay(this.map);
+
+    let even = (document.getElementById('maze').offsetWidth) / this.displayMap[0].length;
+    this.width = even > 30 ? 30 : even;
+    $('.line').css('width',this.width * this.displayMap[0].length);
+    console.log(this.width);
   }
 
 }

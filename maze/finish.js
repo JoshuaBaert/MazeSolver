@@ -34,5 +34,7 @@ module.exports = {
 		map.pop();
 		map.shift();
 		return map
-	}
+	},
+	
+	
 }

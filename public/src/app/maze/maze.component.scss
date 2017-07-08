@@ -74,6 +74,7 @@
 }
 
 
+
 .tabs:before {
   position: absolute;
   content: " ";
@@ -83,6 +84,7 @@
   border-bottom: 1px solid #AAA;
   z-index: 1;
 }
+
 
 
 .button-container {
@@ -99,3 +101,47 @@
 }
 
 
+
+.map-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 300px;
+  
+  .line {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .cell {
+    //width: 100%;
+    padding: 0 0 100% 0;
+    //max-width: 30px;
+    max-height: 30px;
+  }
+  
+  .wall {
+    background-color: black;
+  }
+  .road {
+    background-color: white;
+  }
+  .path {
+    background-color: #59ff3f;
+  }
+  .start {
+    background-color: blue;
+  }
+  .end {
+    background-color: red;
+  }
+  .test {
+    background-color: green;
+  }
+}

@@ -19,7 +19,6 @@ module.exports={
 		maze.time = new Date() - start +'ms';
 		
 		maze = finish.cleanMaze(maze);
-//		console.log(snapShots);
 		snapShots.push(helper.arrayToStr(maze.map));
 		return maze
 	}
