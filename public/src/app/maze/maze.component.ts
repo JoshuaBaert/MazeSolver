@@ -1,6 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-declare var jquery:any;
-declare var $ :any;
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-maze',
@@ -8,62 +6,54 @@ declare var $ :any;
   templateUrl: './maze.component.html'
 })
 export class MazeComponent implements OnInit {
-  tabs = {
-    map: true,
-    editor: true
+  _snapShots;
+  _map;
+
+  speed = 75;
+  i = 0;
+  displayMap;
+
+
+  @Input() set snapShots(array){
+    this._snapShots = array.map(map=>this.mapToDisplay(map))
   };
-  width;
-  map;
-  displayMap
+
+  @Input() set map (str) {
+    console.log(str);
+    this._map = str;
+  };
+
+  @Input() set run (boo) {
+    this.displayMap = this.mapToDisplay(this._map);
+    setTimeout(()=>{
+      this.reRun()
+    },1000)
+  }
+
+
+  ngOnInit() {
+  }
+
+  reRun() {
+    this.i=0;
+    this.animate()
+  }
 
   mapToDisplay(str) {
     let map = str.split('\n').map(line => line.split(''));
-    console.log(map);
-    this.displayMap = map
+    return map
   }
 
-  onRun(){
-    console.log(this.map);
-    this.mapToDisplay(this.map)
-    this.switchTabs('')
+
+  animate() {
+    (() => {
+      setTimeout(() => {
+        if (this.i < this._snapShots.length) {
+          this.displayMap= this._snapShots[this.i];
+          this.i++;
+          this.animate();
+        }
+      }, this.speed);
+    })()
   }
-
-  switchTabs(tab) {
-    if (tab === 'editor') {
-      this.tabs ={
-        map: false,
-        editor: true
-      }
-    } else {
-      this.tabs ={
-        map: true,
-        editor: false
-      }
-    }
-  }
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    console.log(document.getElementById('maze').offsetWidth);
-
-    this.map = `
-##########
-#A...#...#
-#.#.##.#.#
-#.#.##.#.#
-#.#....#B#
-#.#.##.#.#
-#....#...#
-##########
-`.trim();
-    this.mapToDisplay(this.map);
-
-    let even = (document.getElementById('maze').offsetWidth) / this.displayMap[0].length;
-    this.width = even > 30 ? 30 : even;
-    $('.line').css('width',this.width * this.displayMap[0].length);
-    console.log(this.width);
-  }
-
 }

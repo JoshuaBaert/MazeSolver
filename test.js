@@ -2,12 +2,14 @@
  * Created by Joshua Baert on 7/5/2017.
  */
 
-/*
-let start = true;
-let end = false;
-let count = true;
+let x1 = true;
+let y1 = false;
+let x2 = true;
+let y2 = false;
 
-console.log(!start && !end && count)
+console.log(( x1 && y1) || (x2 && y2))
+
+/*
 
 let hurry = ["#"];
 console.log(typeof hurry)
@@ -18,6 +20,7 @@ console.log(typeof hurry)
 */
 
 
+/*
 let compass = [3]
 let x =2
 let y =2
@@ -37,34 +40,4 @@ switch (compass[0]) {
 		break;
 	default :
 		console.log("didn't do anything")
-}
-
-
-console.log('x:'+x+' y;'+y);
-
-let something = `
-###########A#########
-#               #   #
-# ############# ### #
-#   #   #     #     #
-# # # # # # # ##### #
-# # # #   # # # #   #
-# # # ##### # # # ###
-# # # #     #   # # #
-### # # ### ##### # #
-#   # # #   #   #   #
-# ##### # ### # ### #
-# #     # #   #     #
-##### ### # #########
-#     #   # #       #
-# ######### # #######
-#           #       #
-# ################# #
-#   #   #           #
-### # # # ######### #
-#     #   #         #
-###########B#########
-`
-
-console.log(something.replace(/\*\|\+/g, '#')
-	.replace(/\ /g, '.'));
+}*/

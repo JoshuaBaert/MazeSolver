@@ -1,60 +1,30 @@
 
-<ul class="tabs" >
-  
-  <li [class]="tabs.editor ? 'selected' : ''"
-    (click)="switchTabs('editor')"
-  >Editor</li>
-  
-  <li [class]="tabs.map ? 'selected' : ''"
-    (click)="switchTabs('map')"
-  >Map</li>
-
-</ul>
-
-
-
-
-<div id="maze" class="map-display" [class]="!tabs.map ? 'hidden map-display': ' map-display'">
+<div id="maze" class="map-display" >
   
   <div class="line"
     *ngFor="let line of displayMap">
     
     <div style="height: 100%; width: 100%"
-      *ngFor="let plot of line">
-      <div [ngSwitch]="plot">
-        <div *ngSwitchCase="'#'" class="cell wall" [style.width]="width"></div>
-        <div *ngSwitchCase="'.'" class="cell road"></div>
-        <div *ngSwitchCase="'A'" class="cell start"></div>
-        <div *ngSwitchCase="'B'" class="cell end"></div>
-        <div *ngSwitchCase="'!'" class="cell path"></div>
-        <div *ngSwitchCase="'*'" class="cell test"></div>
-      </div>
+      *ngFor="let plot of line"
+      [ngSwitch]="plot">
+      <div *ngSwitchCase="'#'" class="cell wall"></div>
+      <div *ngSwitchCase="'.'" class="cell road"></div>
+      <div *ngSwitchCase="'A'" class="cell start"></div>
+      <div *ngSwitchCase="'B'" class="cell end"></div>
+      <div *ngSwitchCase="'!'" class="cell path"></div>
+      <div *ngSwitchCase="'*'" class="cell test"></div>
+      <div *ngSwitchCase="'_'" class="cell dead"></div>
     </div>
-    
+  
   </div>
 
 </div>
 
-
-
-
-<div [class]="text-editor" [class]="!tabs.editor ? 'hidden': ''">
-  <codemirror [(ngModel)]="map"
-    [config]="{
-    	lineNumbers: true,
-    	theme: 'seti',
-    	value: 'test of value',
-    	lineSeparator: '\n'
-    	}">
-  </codemirror>
-  <div class="button-container">
-    <button
-      (click)="onUpload()"
-      class="run-button btn btn-secondary"
-    >Upload File</button>
-    <button
-      (click)="onRun()"
-      class="run-button btn btn-primary"
-    >Run</button>
+<div class="button-container">
+  <div class="input-group">
+    <span class="input-group-addon">Animation Speed</span>
+    <input [(ngModel)]="speed" class="form-control" (submit)="reRun()">
+    <span class="input-group-addon">ms</span>
   </div>
+  <button class="btn btn-primary" (click)="reRun()">ReRun Solution</button>
 </div>

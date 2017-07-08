@@ -4,32 +4,42 @@
 
 "use strict";
 
-const helper = require('./helper.js')
+const output = require('./output.js')
 
 let testMaze = ``;
 
- const init = {
+const init = {
+	
+	start(mazeStr, snapShots) {
+		let maze = {
+			initMap: mazeStr,
+			map: this.strToArray(mazeStr)
+		};
+		maze.map = this.addWalls(maze.map);
+		maze = this.findStart(maze);
+//		maze = this.fillDead(maze, snapShots);
+		
+		maze.possiblePaths = [[]];
+		return maze
+	},
 	
 	strToArray(str) {
 		return str.trim().split('\n').map(line => line.trim().split(''))
 	},
 	
-	findStart(array) {
-		let results = {};
+	findStart(maze) {
+		let array = maze.map
 		for (let x = array.length - 1; x >= 0; x--) {
 			for (let y = array[x].length - 1; y >= 0; y--) {
 				if (array[x][y] === 'A') {
-					results.start = {x: x, y: y};
-					array[x][y] = '.';
+					maze.start = {x: x, y: y};
 				}
 				if (array[x][y] === 'B') {
-					results.end = {x: x, y: y};
-					array[x][y] = '.';
+					maze.end = {x: x, y: y};
 				}
 			}
 		}
-		results.map = array;
-		return results
+		return maze
 	},
 	
 	addWalls(map){
@@ -41,9 +51,10 @@ let testMaze = ``;
 		map.push(topBottomWalls(map));
 		function topBottomWalls(map) {
 			let rtn = [];
-			map[0].map(point=> rtn.push('#'));
+			map[0].map(point => rtn.push('#'));
 			return rtn
 		}
+		
 		return map
 	},
 	
@@ -52,7 +63,7 @@ let testMaze = ``;
 		let map = maze.map.slice();
 		while (change) {
 			change = false;
-			snapShots.push(helper.arrayToStr(map));
+			snapShots.push(output.arrayToStr(map));
 			for (let x = 1; x < map.length - 1; x++) {
 				for (let y = 1; y < map[x].length - 1; y++) {
 					let count = 0;
@@ -71,16 +82,6 @@ let testMaze = ``;
 			}
 		}
 		maze.map = map.slice();
-		return maze
-	},
-	
-	start(mazeStr, snapShots) {
-		let maze = this.strToArray(mazeStr);
-		maze = this.addWalls(maze);
-		maze = this.findStart(maze);
-//		maze = this.fillDead(maze, snapShots);
-		
-		maze.possiblePaths = [[]];
 		return maze
 	}
 	

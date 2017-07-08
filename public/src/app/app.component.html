@@ -1,6 +1,52 @@
 <div class="container">
   <h1>Maze Solver</h1>
   
-  <app-maze></app-maze>
+  <ul class="tabs">
+    
+    <li [class]="tabs.editor ? 'selected' : ''"
+      (click)="switchTabs('editor')"
+    >Editor
+    </li>
+    
+    <li [class]="tabs.map ? 'selected' : ''"
+      (click)="switchTabs('map')"
+    >Map
+    </li>
+  
+  </ul>
+  
+  
+  <app-maze
+    [run]="runMaze"
+    [class]="!tabs.map ? 'hidden': ''"
+    [snapShots]="snapShots"
+    [map]="map">
+  
+  </app-maze>
+  
+  
+  <div [class]="text-editor" [class]="!tabs.editor ? 'hidden': ''">
+    <codemirror [(ngModel)]="map"
+      [config]="{
+    	lineNumbers: true,
+    	theme: 'seti',
+    	value: 'test of value',
+    	lineSeparator: '\n'
+    	}">
+    </codemirror>
+    <div class="button-container">
+      <button
+        (click)="onUpload()"
+        class="run-button btn btn-secondary"
+      >Upload File
+      </button>
+      <button
+        (click)="onRun()"
+        class="run-button btn btn-primary"
+      >Run
+      </button>
+    </div>
+  </div>
+
 
 </div>

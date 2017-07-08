@@ -8,6 +8,7 @@ module.exports = {
 		delete maze.possiblePaths;
 		this.displayShortest(maze.map, maze.winner);
 		this.removeWalls(maze.map);
+//		maze.map = this.simpleToStr(maze.map);
 		
 		return maze
 	},
@@ -23,7 +24,9 @@ module.exports = {
 	},
 	
 	displayShortest(map,path) {
-		path.map(cords=>map[cords[0]][cords[1]] = '!')
+		for (var i = path.length - 2; i >= 1; i--) {
+			map[path[i][0]][path[i][1]] = "!"
+		}
 	},
 	
 	removeWalls(map) {
@@ -36,5 +39,23 @@ module.exports = {
 		return map
 	},
 	
+	removeWallsStr(str) {
+		let array = str.split('\n').map(line=>line.split(''))
+		array.map(line=>{
+			line.pop();
+			line.shift();
+		})
+		array.pop();
+		array.shift();
+		return array.map(line => line.join('')).join('\n')
+	},
+	
+	arrayToStr(array) {
+		return this.removeWallsStr(array.map(line => line.join('')).join('\n'))
+	},
+	
+	simpleToStr(array) {
+		return array.map(line => line.join('')).join('\n')
+	}
 	
 }
