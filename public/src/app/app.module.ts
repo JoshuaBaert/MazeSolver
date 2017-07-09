@@ -7,15 +7,18 @@ import { NgModule } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { AppComponent } from './app.component';
-import { MazeComponent } from './maze/maze.component'
+import { MazeComponent } from './maze/maze.component';
 
-import {SolveService} from './solve.service';
+import { FileSelectDirective } from 'ng2-file-upload';
+
+import { SolveService} from './solve.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CodemirrorComponent,
     MazeComponent,
+    FileSelectDirective,
   ],
   imports: [
     BrowserModule,

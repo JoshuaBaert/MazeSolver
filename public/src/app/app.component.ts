@@ -1,5 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {SolveService} from './solve.service';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { Http } from '@angular/http'
+import { SolveService } from './solve.service';
+
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
 
 @Component({
   selector: 'app-root',
@@ -41,7 +45,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  constructor(private solveService: SolveService) {
+  constructor(private solveService: SolveService,private http: Http, private el: ElementRef) {
 
     this.map = `
 ##########
@@ -57,6 +61,24 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
 
+  upload() {
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#maze');
+    let fileCount: number = inputEl.files.length;
+    let formData = new FormData();
+    if (fileCount > 0) { // a file was selected
+      for (let i = 0; i < fileCount; i++) {
+        formData.append('photo', inputEl.files.item(i));
+      }
+      this.http
+        .post('http://localhost:8080/api/txtsolve', formData).map((res:any) => res).subscribe(
+        (success) => {
+          alert(success._body);
+        },
+        (error) => alert(error)
+      );
+
+    }
   }
 }

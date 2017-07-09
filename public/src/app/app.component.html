@@ -25,12 +25,28 @@
     	lineSeparator: '\n'
     	}">
     </codemirror>
+    
+    
     <div class="button-container">
-      <button
-        (click)="onUpload()"
-        class="run-button btn btn-secondary"
-      >Upload File
-      </button>
+      
+      
+      <div class="upload-container">
+        <div class="input-group input-group-lg input">
+          
+          <input type="file" name="maze" id="maze" class="form-control">
+          
+          <span class="input-group-btn">
+            <button type="button"
+              (click)="upload()"
+              class="run-button btn btn-secondary">
+              Upload File
+            </button>
+          </span>
+        
+        </div>
+      </div>
+      
+      
       <button
         (click)="onRun()"
         class="run-button btn btn-primary"
