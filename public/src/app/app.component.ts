@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
         formData.append('photo', inputEl.files.item(i));
       }
       this.http
-        .post('http://localhost:8080/api/txtsolve', formData).map((res:any) => res).subscribe(
+        .post('/api/txtsolve', formData).map((res:any) => res).subscribe(
         (success) => {
           alert(success._body);
         },
