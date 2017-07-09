@@ -26,5 +26,6 @@
     <input [(ngModel)]="speed" class="form-control" (submit)="reRun()">
     <span class="input-group-addon">ms</span>
   </div>
+  <span><h4>Server Completed in: {{_maze.time}} in {{instructions.length}} steps</h4></span>
   <button class="btn btn-primary" (click)="reRun()">ReRun Solution</button>
 </div>

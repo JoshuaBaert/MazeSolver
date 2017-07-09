@@ -6,19 +6,20 @@ import {Component, OnInit, Input} from '@angular/core';
   templateUrl: './maze.component.html'
 })
 export class MazeComponent implements OnInit {
-  _maze;
+  _maze = {time:0};
   _map;
 
-  instructions
-  speed = 100;
+  instructions = [];
+  speed = 25;
   i = 0;
   displayMap;
   finalMap;
 
 
   @Input() set maze(maze) {
-    if(maze.map){
-      this._maze = maze
+    if (maze.map) {
+      this._maze = maze;
+      this._maze.time = maze.time;
       this.displayMap = this.mapToDisplay(maze.initMap);
       this.finalMap = maze.map;
       this.instructions = maze.instructions;
@@ -49,25 +50,39 @@ export class MazeComponent implements OnInit {
   }
 
   mapToDisplay(str) {
-    let map = str.split('\n').map(line => line.split(''));
+    let map = str.split('\n').map(line =>{
+      line = line.split('');
+    });
     return map
   }
 
 
   animate() {
-    setTimeout(() => {
-      if (this.i < this.instructions.length) {
-        this.instructions[this.i].map(point=>{
-          console.log(point);
-          console.log(this.displayMap[point.x][point.y]);
-          this.displayMap[point.x][point.y] = point.update
-        });
-        this.i++;
-        this.animate();
-      } else {
-        this.displayMap = this.finalMap;
-        this.i = 0
-      }
-    }, this.speed);
+    let i = 0
+
+    let go = () => {
+      setTimeout(() => {
+        if (i < this.instructions.length && this.instructions.length < 1000) {
+          this.instructions[i].map(point => {
+            this.displayMap[point.x][point.y] = point.update
+          });
+          i++;
+          go()
+        } else if (this.instructions.length >= 1000) {
+          this.instructions.map(wave => wave.map(point => {
+            this.displayMap[point.x][point.y] = point.update
+          }))
+          setTimeout(()=>{
+            this.displayMap = this.finalMap;
+          },200)
+
+        } else {
+          this.displayMap = this.finalMap;
+        }
+      }, this.speed);
+    };
+
+    go()
+
   }
 }

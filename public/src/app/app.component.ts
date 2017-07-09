@@ -7,7 +7,7 @@ import {SolveService} from './solve.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  tabs = {map: true, editor: true};
+  tabs = {map: false, editor: true};
   width;
   map = {};
   maze = {};
