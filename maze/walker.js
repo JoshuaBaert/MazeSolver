@@ -38,7 +38,7 @@ const walker = {
 								console.log(`We found the end at x: ${x} & y:${y}`);
 							} else {
 								map[nextXY[0]][nextXY[1]] = '*';
-								instructions[instructions.length-1].push({x:nextXY[0]-1, y:nextXY[1]-1, update: '*'})
+								instructions[instructions.length-1].push({x:nextXY[0]-1, y:nextXY[1]-1, update: 'test'})
 							}
 							if (index === 0) {
 								positions[i] = nextXY;
@@ -52,7 +52,7 @@ const walker = {
 						positions.splice(i,1);
 						pathsArray.splice(i,1);
 						map[x][y] = '_';
-						instructions[instructions.length-1].push({x:x-1, y:y-1 , update: '_'})
+						instructions[instructions.length-1].push({x:x-1, y:y-1 , update: 'dead'})
 					}
 				}
 			});

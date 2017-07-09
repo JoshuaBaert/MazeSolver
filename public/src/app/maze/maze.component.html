@@ -5,15 +5,10 @@
     *ngFor="let line of displayMap">
     
     <div style="height: 100%; width: 100%"
-      *ngFor="let plot of line"
-      [ngSwitch]="plot">
-      <div *ngSwitchCase="'#'" class="cell wall"></div>
-      <div *ngSwitchCase="'.'" class="cell road"></div>
-      <div *ngSwitchCase="'A'" class="cell start"></div>
-      <div *ngSwitchCase="'B'" class="cell end"></div>
-      <div *ngSwitchCase="'!'" class="cell path"></div>
-      <div *ngSwitchCase="'*'" class="cell test"></div>
-      <div *ngSwitchCase="'_'" class="cell dead"></div>
+      *ngFor="let plot of line">
+      
+      <div class="cell {{plot}}"></div>
+      
     </div>
   
   </div>

@@ -10,7 +10,7 @@ export class MazeComponent implements OnInit {
   _map;
 
   instructions = [];
-  speed = 25;
+  speed = 10;
   i = 0;
   displayMap;
   finalMap;
@@ -49,10 +49,22 @@ export class MazeComponent implements OnInit {
     this.animate()
   }
 
-  mapToDisplay(str) {
-    let map = str.split('\n').map(line =>{
-      line = line.split('');
-    });
+  mapToDisplay(map:any) {
+    if (typeof map === 'string') {
+      map = map.split('\n').map(line =>line.split(''))
+    }
+    map = map.map(line=>line.map(plot=>{
+      switch (plot) {
+        case '#' : return 'wall';
+        case '.' : return 'road';
+        case 'A' : return 'start';
+        case 'B' : return 'end';
+        case '!' : return 'path';
+        case '*' : return 'test';
+        case '_' : return 'dead';
+      }
+    }))
+    console.log(map);
     return map
   }
 
@@ -73,11 +85,12 @@ export class MazeComponent implements OnInit {
             this.displayMap[point.x][point.y] = point.update
           }))
           setTimeout(()=>{
-            this.displayMap = this.finalMap;
-          },200)
+            this.displayMap = this.mapToDisplay(this.finalMap);
+          },100)
 
         } else {
-          this.displayMap = this.finalMap;
+
+          this.displayMap = this.mapToDisplay(this.finalMap);
         }
       }, this.speed);
     };
