@@ -21,3 +21,6 @@ After inital setup you can run the file by running this command :
 ```
 npm run start
 ```
+
+
+It is also hosted on my own [server](http://maze.baert.io)
