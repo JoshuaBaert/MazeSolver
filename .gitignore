@@ -4,6 +4,7 @@ picture.txt
 node_modules
 config.js
 test.html
+/public/dist
 
 # Ignore CodeMirror
 /public/src/assets/codemirror/*
