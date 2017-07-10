@@ -10,11 +10,14 @@ git clone https://github.com/JoshuaBaert/MazeSolver.git
 ```
 cd MazeSolver
 ```
-
+If you don't have AngularCli run:
 ```
 npm run setup
 ```
-
+If you have AngularCli run:
+```
+npm run setupNg2
+```
 then go to [Localhost:5025](http://Localhost:5025)
 
 After inital setup you can run the file by running this command :
