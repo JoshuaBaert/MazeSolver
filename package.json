@@ -6,8 +6,9 @@
   "scripts": {
     "setup": "npm run installApi && npm run start",
     "installApi": "npm install",
-    "installPublic": "cd public && npm install && ng build",
-    "start": "node index.js"
+    "start": "node index.js",
+    "setupNg2": "npm install && npm run installPublic && npm run start",
+    "installPublic": "cd public && npm install && ng build"
   },
   "repository": {
     "type": "git",
