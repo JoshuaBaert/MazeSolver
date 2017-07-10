@@ -8,7 +8,6 @@ module.exports = {
 		delete maze.possiblePaths;
 		this.displayShortest(maze.map, maze.winner);
 		this.removeWalls(maze.map);
-//		maze.map = this.simpleToStr(maze.map);
 		
 		return maze
 	},

@@ -13,6 +13,7 @@ const walker = {
 		
 		
 		/*
+		*
 		* This is a Breadth-First search. I choose this style because I felt it was the most thorough
 		*
 		* It searches all possible paths each taking one step at a time. Once a step reaches the end
@@ -28,6 +29,8 @@ const walker = {
 				let x = position[0];
 				let y = position[1];
 				pathsArray[i].push([x,y]);
+				
+				// I will be using instructions to track all steps I take for the animation.
 				instructions.push([]);
 				
 				if (position[0] === end.x && position[1] === end.y){
@@ -69,6 +72,7 @@ const walker = {
 				}
 			});
 		}
+		// luckily objects are pass by reference so the only thing I need out of this is the instructions for the animation.
 		return instructions
 	},
 	
