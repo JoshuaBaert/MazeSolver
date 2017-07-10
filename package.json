@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "npm run installApi && npm run installPublic && npm run launch",
+    "setup": "npm run installApi && npm run launch",
     "installApi": "npm install",
     "installPublic": "cd public && npm install && ng build",
     "start": "node index.js"

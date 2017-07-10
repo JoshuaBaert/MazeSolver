@@ -3,7 +3,9 @@ test.js
 picture.txt
 node_modules
 test.html
-/public/dist
+
+# I commited dist so it doens't require anyone to have Angular CLI to run the project
+#/public/dist
 
 # Ignore CodeMirror
 /public/src/assets/codemirror/*
