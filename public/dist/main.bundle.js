@@ -39,7 +39,7 @@ module.exports = module.exports.toString();
 /***/ 153:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>Maze Solver</h1>\n  \n  <ul class=\"tabs\">\n    \n    <li [class]=\"tabs.editor ? 'selected' : ''\"\n      (click)=\"switchTabs('editor')\"\n    >Editor\n    </li>\n    \n    <li [class]=\"tabs.map ? 'selected' : ''\"\n      (click)=\"switchTabs('map')\">\n      Map\n    </li>\n  \n  </ul>\n  \n  \n  <div [class]=\"text-editor\" [class]=\"!tabs.editor ? 'hidden': ''\">\n    <codemirror [(ngModel)]=\"map\"\n      [config]=\"{\n    \tlineNumbers: true,\n    \ttheme: 'seti',\n    \tvalue: 'test of value',\n    \tlineSeparator: '\\n'\n    \t}\">\n    </codemirror>\n    \n    \n    <div class=\"button-container\">\n      \n      \n      <div class=\"upload-container\">\n        <div class=\"input-group input-group-lg input\">\n          \n          <input type=\"file\" name=\"maze\" id=\"maze\" accept=\".txt\" class=\"form-control\">\n          \n          <span class=\"input-group-btn\">\n            <button type=\"button\"\n              (click)=\"upload()\"\n              class=\"run-button btn btn-secondary\">\n              Upload File\n            </button>\n          </span>\n        \n        </div>\n      </div>\n      \n      \n      <button\n        (click)=\"onRun()\"\n        class=\"run-button btn btn-primary\"\n      >Run\n      </button>\n    </div>\n  </div>\n  \n  \n  <app-maze\n    [run]=\"runMaze\"\n    [class]=\"!tabs.map ? 'hidden': ''\"\n    [maze]=\"maze\">\n  \n  </app-maze>\n\n\n</div>\n"
+module.exports = "<div class=\"container\">\n  <h1>Maze Solver</h1>\n  <p>information about this page is available on <a href=\"https://github.com/JoshuaBaert/MazeSolver\" target=\"_blank\">GitHub</a></p>\n  \n  <ul class=\"tabs\">\n    \n    <li [class]=\"tabs.editor ? 'selected' : ''\"\n      (click)=\"switchTabs('editor')\"\n    >Editor\n    </li>\n    \n    <li [class]=\"tabs.map ? 'selected' : ''\"\n      (click)=\"switchTabs('map')\">\n      Map\n    </li>\n  \n  </ul>\n  \n  \n  <div [class]=\"text-editor\" [class]=\"!tabs.editor ? 'hidden': ''\">\n    <codemirror [(ngModel)]=\"map\"\n      [config]=\"{\n    \tlineNumbers: true,\n    \ttheme: 'seti',\n    \tvalue: 'test of value',\n    \tlineSeparator: '\\n'\n    \t}\">\n    </codemirror>\n    \n    \n    <div class=\"button-container\">\n      \n      \n      <div class=\"upload-container\">\n        <div class=\"input-group input-group-lg input\">\n          \n          <input type=\"file\" name=\"maze\" id=\"maze\" accept=\".txt\" class=\"form-control\">\n          \n          <span class=\"input-group-btn\">\n            <button type=\"button\"\n              (click)=\"upload()\"\n              class=\"run-button btn btn-secondary\">\n              Upload File\n            </button>\n          </span>\n        \n        </div>\n      </div>\n      \n      \n      <button\n        (click)=\"onRun()\"\n        class=\"run-button btn btn-primary\"\n      >Run\n      </button>\n    </div>\n  </div>\n  \n  \n  <app-maze\n    [run]=\"runMaze\"\n    [class]=\"!tabs.map ? 'hidden': ''\"\n    [maze]=\"maze\">\n  \n  </app-maze>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -184,12 +184,9 @@ var AppComponent = (function () {
                 }
             });
             if (!test) {
-                alert('Maze is not Rectangle or Square try again.');
-                return test;
+                alert('Maze is invalid! \nCharacters allowed: # . A B \nor it may not be rectangle/square.');
             }
-            else {
-                return test;
-            }
+            return test;
         };
         var map = this.map.trim().replace(/[^#.AB\n]/g, '');
         // if (map.substr(0)==='\n') map = map.replace(/\n*/, '');

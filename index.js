@@ -1,5 +1,7 @@
 /**
- * Created by Joshua Baert on 7/6/2017.
+ *
+ * This is my response to PeopleNet's Code Challenge You can find the details of the challenge in the challenge folder.
+ *
  */
 
 const bodyParser = require('body-parser');

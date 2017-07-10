@@ -28,11 +28,9 @@ export class AppComponent implements OnInit {
         }
       });
       if (!test) {
-        alert('Maze is not Rectangle or Square try again.');
-        return test
-      } else {
-        return test
+        alert('Maze is invalid! \nCharacters allowed: # . A B \nor it may not be rectangle/square.');
       }
+      return test
     }
     let map = this.map.trim().replace(/[^#.AB\n]/g, '');
     // if (map.substr(0)==='\n') map = map.replace(/\n*/, '');

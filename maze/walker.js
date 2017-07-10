@@ -12,28 +12,42 @@ const walker = {
 		let positions = [[start.x,start.y]];
 		
 		
-		// This is a
+		/*
+		* This is a Breadth-First search. I choose this style because I felt it was the most thorough
+		*
+		* It searches all possible paths each taking one step at a time. Once a step reaches the end
+		* we stop searching and consider that route the shortest due to having taken every possible turn
+		* along the way.
+		*
+		*/
+		
 		
 		while (walking) {
 			
 			positions.map((position, i, positions) => {
-				let x = position.slice(0)[0];
-				let y = position.slice(1)[0];
+				let x = position[0];
+				let y = position[1];
 				pathsArray[i].push([x,y]);
 				instructions.push([]);
 				
 				if (position[0] === end.x && position[1] === end.y){
-					walking = false;
+					// Checking to see if current position is end
 					
+					walking = false;
 				} else{
+					// If it is not we then find if we can walk.
 					
 					let direction = this.canWalk(map,x,y);
 					if (direction.canWalk) {
 						direction.compass.map((plot,index) => {
 							let nextXY = this.changeDirection(x,y,plot);
 							if (nextXY[0] === end.x && nextXY[1] === end.y){
+								// this log is here to keep us from overwriting B on the map
 								console.log(`We found the end at x: ${x} & y:${y}`);
 							} else {
+								// if we can walk we mark this path as searched and move to the next if there is multiple
+								// directions we copy the current path traveled and make a new position
+								
 								map[nextXY[0]][nextXY[1]] = '*';
 								instructions[instructions.length-1].push({x:nextXY[0]-1, y:nextXY[1]-1, update: 'test'})
 							}
@@ -45,7 +59,8 @@ const walker = {
 							}
 						});
 					} else {
-						//if we can't move delete the position and path
+						//if we can't move delete the position, path traveled and mark it as dead
+						
 						positions.splice(i,1);
 						pathsArray.splice(i,1);
 						map[x][y] = '_';
