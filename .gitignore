@@ -3,6 +3,7 @@ test.js
 picture.txt
 node_modules
 test.html
+/public/dist
 
 # Ignore CodeMirror
 /public/src/assets/codemirror/*
