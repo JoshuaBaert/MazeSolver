@@ -10,7 +10,7 @@ git clone https://github.com/JoshuaBaert/MazeSolver.git
 ```
 cd MazeSolver
 ```
-If you don't have AngularCli run:
+If you **don't** have AngularCli run:
 ```
 npm run setup
 ```
