@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "autoInstall": "npm install && cd public && npm install && ng build"
+    "autoInstall": "npm run installApi && npm run installPublic && npm run launch",
+    "installApi": "npm install",
+    "installPublic": "cd public && npm install && ng build",
+    "launch": "node index.js"
   },
   "repository": {
     "type": "git",
