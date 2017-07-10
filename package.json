@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "autoInstall": "npm run installApi && npm run installPublic && npm run launch",
+    "setup": "npm run installApi && npm run installPublic && npm run launch",
     "installApi": "npm install",
     "installPublic": "cd public && npm install && ng build",
-    "launch": "node index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
