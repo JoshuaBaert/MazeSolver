@@ -15,7 +15,7 @@ cd MazeSolver
 npm run setup
 ```
 
-then go to [Localhost:5025](http://localhost:5025)
+then go to <a href="http://Localhost:5025" target="_blank">Localhost:5025</a>
 
 After inital setup you can run the file by running this command :
 ```
@@ -23,4 +23,4 @@ npm run start
 ```
 
 
-It is also hosted on my own [server](http://maze.baert.io)
+It is also hosted on my own <a href="http://maze.baert.io" target="_blank">server</a>
