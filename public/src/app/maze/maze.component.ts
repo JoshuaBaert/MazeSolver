@@ -7,7 +7,7 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class MazeComponent implements OnInit {
   _maze = {time:0};
-  _map;
+  _map = '';
 
   instructions = [];
   speed = 10;
@@ -18,6 +18,7 @@ export class MazeComponent implements OnInit {
 
   @Input() set maze(maze) {
     if (maze.map) {
+      this._map = maze.initMap;
       this._maze = maze;
       this._maze.time = maze.time;
       this.displayMap = this.mapToDisplay(maze.initMap);
@@ -25,11 +26,6 @@ export class MazeComponent implements OnInit {
       this.instructions = maze.instructions;
       console.log(this.instructions)
     }
-  };
-
-  @Input() set map(str) {
-    console.log(str);
-    this._map = str;
   };
 
   @Input() set run(boo) {

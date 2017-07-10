@@ -9,8 +9,8 @@
     </li>
     
     <li [class]="tabs.map ? 'selected' : ''"
-      (click)="switchTabs('map')"
-    >Map
+      (click)="switchTabs('map')">
+      Map
     </li>
   
   </ul>
@@ -33,7 +33,7 @@
       <div class="upload-container">
         <div class="input-group input-group-lg input">
           
-          <input type="file" name="maze" id="maze" class="form-control">
+          <input type="file" name="maze" id="maze" accept=".txt" class="form-control">
           
           <span class="input-group-btn">
             <button type="button"
@@ -59,8 +59,7 @@
   <app-maze
     [run]="runMaze"
     [class]="!tabs.map ? 'hidden': ''"
-    [maze]="maze"
-    [map]="map">
+    [maze]="maze">
   
   </app-maze>
 

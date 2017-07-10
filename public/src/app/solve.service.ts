@@ -11,4 +11,9 @@ export class SolveService {
       .map(req => req.json())
   }
 
+  uploadTxt(form) {
+    return this._http.post('/api/txtsolve', form)
+      .map(req=>req.json())
+  }
+
 }

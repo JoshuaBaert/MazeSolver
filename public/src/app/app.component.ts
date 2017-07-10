@@ -13,22 +13,40 @@ import "rxjs/add/operator/map";
 export class AppComponent implements OnInit {
   tabs = {map: false, editor: true};
   width;
-  map = {};
+  map = '';
   maze = {};
   runMaze = false;
 
   onRun() {
-    console.log(this.map);
-    this.solveService.postMaze(this.map)
-      .subscribe(data=> {
-        this.maze = data;
-        console.log(data);
-        this.switchTabs('');
-        this.runMaze = !this.runMaze;
+    let checkValid = (str) =>{
+      let map = str.split('\n').map(line=>line.split(''))
+      let width = map[0].length;
+      let test = true;
+      map.map(line => {
+        if (line.length !== width) {
+          test = false;
+        }
       });
-
-
-
+      if (!test) {
+        alert('Maze is not Rectangle or Square try again.');
+        return test
+      } else {
+        return test
+      }
+    }
+    let map = this.map.trim().replace(/[^#.AB\n]/g, '');
+    // if (map.substr(0)==='\n') map = map.replace(/\n*/, '');
+    // this.map = map;
+    console.log(map);
+    if (checkValid(map)) {
+      this.solveService.postMaze(map)
+        .subscribe(data=> {
+          this.maze = data;
+          console.log(data);
+          this.switchTabs('');
+          this.runMaze = !this.runMaze;
+        });
+    }
   }
 
   switchTabs(tab) {
@@ -71,14 +89,8 @@ export class AppComponent implements OnInit {
       for (let i = 0; i < fileCount; i++) {
         formData.append('photo', inputEl.files.item(i));
       }
-      this.http
-        .post('/api/txtsolve', formData).map((res:any) => res).subscribe(
-        (success) => {
-          alert(success._body);
-        },
-        (error) => alert(error)
-      );
-
+      this.solveService.uploadTxt(formData)
+        .subscribe(map => this.map = map.trim())
     }
   }
 }

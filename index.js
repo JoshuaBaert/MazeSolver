@@ -13,9 +13,8 @@ const maze = require('./maze/index');
 
 const config = require('./config');
 
-let location = __dirname + '/uploads';
-
-const upload = multer({dest: location});
+let uploads = __dirname + '/uploads';
+const upload = multer({dest: uploads});
 
 const app = express();
 
@@ -33,11 +32,15 @@ app.post('/api/solve', (req,res,next)=> {
 
 var type = upload.any('txt');
 app.post('/api/txtsolve', type ,(req, res, next) =>{
-	console.log(req.files)
 	let tmp_path = req.files[0].path;
+	console.log('made text file @ ' + tmp_path);
 	fs.readFile(tmp_path, 'utf8', (err, data)=>{
-		console.log(data);
+		res.json(data);
 	});
+	fs.unlink(tmp_path, err => {
+		if (err) console.log(err)
+		else console.log('deleted file')
+	})
 	
 })
 
