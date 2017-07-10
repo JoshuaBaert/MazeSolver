@@ -11,6 +11,9 @@ const walker = {
 		let walking = true;
 		let positions = [[start.x,start.y]];
 		
+		
+		// This is a
+		
 		while (walking) {
 			
 			positions.map((position, i, positions) => {
@@ -19,21 +22,15 @@ const walker = {
 				pathsArray[i].push([x,y]);
 				instructions.push([]);
 				
-				
-				
-				// Check to see if we have found the end
 				if (position[0] === end.x && position[1] === end.y){
 					walking = false;
 					
 				} else{
 					
-					// See if we can move
-					let direction = walker.canWalk(map,x,y);
+					let direction = this.canWalk(map,x,y);
 					if (direction.canWalk) {
-						// if we can move do so
 						direction.compass.map((plot,index) => {
-							let nextXY = walker.changeDirection(x,y,plot);
-							// see if next is end of maze
+							let nextXY = this.changeDirection(x,y,plot);
 							if (nextXY[0] === end.x && nextXY[1] === end.y){
 								console.log(`We found the end at x: ${x} & y:${y}`);
 							} else {

@@ -17,9 +17,9 @@ const init = {
 		};
 		maze.map = this.addWalls(maze.map);
 		maze = this.findStart(maze);
-//		maze = this.fillDead(maze, snapShots);
-		
 		maze.possiblePaths = [[]];
+		
+		// Maze obj should be ready for walker to find solution
 		return maze
 	},
 	
@@ -43,47 +43,21 @@ const init = {
 	},
 	
 	addWalls(map){
+		// Makes it easier and less coding on the maze walker
 		map.map(line => {
 			line.unshift('#');
 			line.push('#');
 		});
-		map.unshift(topBottomWalls(map));
-		map.push(topBottomWalls(map));
 		function topBottomWalls(map) {
 			let rtn = [];
 			map[0].map(point => rtn.push('#'));
 			return rtn
 		}
+		map.unshift(topBottomWalls(map));
+		map.push(topBottomWalls(map));
 		
 		return map
 	},
-	
-	fillDead(maze, snapShots) {
-		let change = true;
-		let map = maze.map.slice();
-		while (change) {
-			change = false;
-			snapShots.push(output.arrayToStr(map));
-			for (let x = 1; x < map.length - 1; x++) {
-				for (let y = 1; y < map[x].length - 1; y++) {
-					let count = 0;
-					let isStart = (x === maze.start.x && y === maze.start.y);
-					let isEnd = (x === maze.end.x && y === maze.end.y);
-					if (map[x + 1][y] === "#") count++;
-					if (map[x - 1][y] === "#") count++;
-					if (map[x][y + 1] === "#") count++;
-					if (map[x][y - 1] === "#") count++;
-//				console.log('x:' + x + ' y:' + y + ' isStart:' + isStart + ' isEnd:' + isEnd);
-					if (!isStart && !isEnd && count === 3 && map[x][y] === '.') {
-						map[x][y] = "#";
-						change = true;
-					}
-				}
-			}
-		}
-		maze.map = map.slice();
-		return maze
-	}
 	
 };
 

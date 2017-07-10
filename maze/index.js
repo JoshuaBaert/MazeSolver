@@ -11,10 +11,13 @@ const mazeStr = ``;
 
 module.exports={
 	solve(str) {
+		// get time then run our solver functions
 		let start = new Date();
-		let maze = init.start(str);
 		
+		let maze = init.start(str);
 		let instructions = walker.walk(maze.map, maze.possiblePaths, maze.start, maze.end);
+		
+		// Attach run time to maze object
 		maze.time = new Date() - start +'ms';
 		
 		maze = output.cleanMaze(maze);
