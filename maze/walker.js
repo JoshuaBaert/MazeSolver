@@ -14,7 +14,7 @@ const walker = {
 		
 		/*
 		*
-		* This is a Breadth-First search. I choose this style because I felt it was the most thorough
+		* This is a Breadth-First search. I chose this style because I felt it was the most thorough
 		*
 		* It searches all possible paths each taking one step at a time. Once a step reaches the end
 		* we stop searching and consider that route the shortest due to having taken every possible turn
