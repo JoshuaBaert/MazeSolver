@@ -10,6 +10,7 @@ export class MazeComponent implements OnInit {
   _map = '';
 
   instructions = [];
+  steps = 0;
   speed = 10;
   i = 0;
   displayMap;
@@ -66,19 +67,22 @@ export class MazeComponent implements OnInit {
 
 
   animate() {
-    let i = 0
+    let i = 0;
+    this.steps=0;
 
     let go = () => {
       setTimeout(() => {
         if (i < this.instructions.length && this.instructions.length < 1000) {
           this.instructions[i].map(point => {
             this.displayMap[point.x][point.y] = point.update
+            this.steps++;
           });
           i++;
           go()
         } else if (this.instructions.length >= 1000) {
           this.instructions.map(wave => wave.map(point => {
             this.displayMap[point.x][point.y] = point.update
+            this.steps++
           }))
           setTimeout(()=>{
             this.displayMap = this.mapToDisplay(this.finalMap);

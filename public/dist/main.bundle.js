@@ -46,7 +46,7 @@ module.exports = "<div class=\"container\">\n  <h1>Maze Solver</h1>\n  <p>inform
 /***/ 154:
 /***/ (function(module, exports) {
 
-module.exports = "\n<div id=\"maze\" class=\"map-display\" >\n  \n  <div class=\"line\"\n    *ngFor=\"let line of displayMap\">\n    \n    <div style=\"height: 100%; width: 100%\"\n      *ngFor=\"let plot of line\">\n      \n      <div class=\"cell {{plot}}\"></div>\n      \n    </div>\n  \n  </div>\n\n</div>\n\n<div class=\"button-container\">\n  <div class=\"input-group\">\n    <span class=\"input-group-addon\">Step Speed</span>\n    <input [(ngModel)]=\"speed\" class=\"form-control\" (submit)=\"reRun()\">\n    <span class=\"input-group-addon\">ms</span>\n  </div>\n  <span><h4>Server solved in: {{_maze.time}} with {{instructions.length}} steps</h4></span>\n  <button class=\"btn btn-primary\" (click)=\"reRun()\">ReRun Solution</button>\n</div>\n"
+module.exports = "\n<div id=\"maze\" class=\"map-display\" >\n  \n  <div class=\"line\"\n    *ngFor=\"let line of displayMap\">\n    \n    <div style=\"height: 100%; width: 100%\"\n      *ngFor=\"let plot of line\">\n      \n      <div class=\"cell {{plot}}\"></div>\n      \n    </div>\n  \n  </div>\n\n</div>\n\n<div class=\"button-container\">\n  <div class=\"input-group\">\n    <span class=\"input-group-addon\">Step Speed</span>\n    <input [(ngModel)]=\"speed\" class=\"form-control\" (submit)=\"reRun()\">\n    <span class=\"input-group-addon\">ms</span>\n  </div>\n  <span><h4>Server solved in: {{_maze.time}} with {{steps}} steps</h4></span>\n  <button class=\"btn btn-primary\" (click)=\"reRun()\">ReRun Solution</button>\n</div>\n"
 
 /***/ }),
 
@@ -328,6 +328,7 @@ var MazeComponent = (function () {
         this._maze = { time: 0 };
         this._map = '';
         this.instructions = [];
+        this.steps = 0;
         this.speed = 10;
         this.i = 0;
     }
@@ -386,11 +387,13 @@ var MazeComponent = (function () {
     MazeComponent.prototype.animate = function () {
         var _this = this;
         var i = 0;
+        this.steps = 0;
         var go = function () {
             setTimeout(function () {
                 if (i < _this.instructions.length && _this.instructions.length < 1000) {
                     _this.instructions[i].map(function (point) {
                         _this.displayMap[point.x][point.y] = point.update;
+                        _this.steps++;
                     });
                     i++;
                     go();
@@ -398,6 +401,7 @@ var MazeComponent = (function () {
                 else if (_this.instructions.length >= 1000) {
                     _this.instructions.map(function (wave) { return wave.map(function (point) {
                         _this.displayMap[point.x][point.y] = point.update;
+                        _this.steps++;
                     }); });
                     setTimeout(function () {
                         _this.displayMap = _this.mapToDisplay(_this.finalMap);

@@ -24,14 +24,13 @@ const walker = {
 		
 		
 		while (walking) {
+			// I will be using instructions to track all steps I take for the animation.
+			instructions.push([]);
 			
 			positions.map((position, i, positions) => {
 				let x = position[0];
 				let y = position[1];
 				pathsArray[i].push([x,y]);
-				
-				// I will be using instructions to track all steps I take for the animation.
-				instructions.push([]);
 				
 				if (position[0] === end.x && position[1] === end.y){
 					// Checking to see if current position is end
